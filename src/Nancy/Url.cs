@@ -143,7 +143,8 @@ namespace Nancy
         /// <returns>An <see cref="Uri"/> representation of the <paramref name="url"/>.</returns>
         public static implicit operator Uri(Url url)
         {
-            return new Uri(url.ToString(), UriKind.Absolute);
+            var s = Uri.UnescapeDataString(url.ToString());
+            return new Uri(s, UriKind.Absolute);
         }
 
         private static string GetFragment(string fragment)
